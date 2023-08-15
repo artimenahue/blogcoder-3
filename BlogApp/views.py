@@ -2,11 +2,16 @@ from django.shortcuts import render, redirect
 from .models import Categoria, Entrada
 from .forms import CategoriaForm, EntradaForm, BusquedaForm
 
+
+#Vista para mostrar la pagina de inicio del blog. Muestra la lista de categorias y entradas que cargues. 
+# Ademas, se agrego un boton para realizar las busquedas de las categorias y entradas registradas.
 def home(request):
+    
     categorias = Categoria.objects.all()
     entradas = Entrada.objects.all()
     return render(request, 'blogapp/home.html', {'categorias': categorias, 'entradas': entradas})
 
+#Vista para agregar una nueva categoría al blog.
 def agregar_categoria(request):
     if request.method == 'POST':
         form = CategoriaForm(request.POST)
@@ -17,6 +22,7 @@ def agregar_categoria(request):
         form = CategoriaForm()
     return render(request, 'blogapp/agregar_categoria.html', {'form': form})
 
+#Vista para agregar una nueva entrada al blog.
 def agregar_entrada(request):
     if request.method == 'POST':
         form = EntradaForm(request.POST)
@@ -27,6 +33,7 @@ def agregar_entrada(request):
         form = EntradaForm()
     return render(request, 'blogapp/agregar_entrada.html', {'form': form})
 
+#En la misma vista del blog (home) se agrego un buscador
 def home(request):
     categorias = Categoria.objects.all()
     entradas = Entrada.objects.all()
