@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h4>Agregar Categoría</h4>
+    <form class="form-label" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Agregar Categoría</button>
+    </form>
+{% endblock %}

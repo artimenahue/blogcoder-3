@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h4>Lista de Categorías</h4>
+    <ul>
+        {% for categoria in categorias %}
+            <li>{{ categoria.nombre }}</li>
+        {% endfor %}
+    </ul>
+
+    <h4>Buscar Entradas</h4>
+    <form for="floatingInput" method="get">
+        {{ form.as_p }}
+        <button type="submit">Buscar</button>
+    </form>
+
+    {% if form.is_valid and form.cleaned_data.busqueda %}
+        <h2>Resultados de Búsqueda</h2>
+        <ul>
+            {% for entrada in entradas %}
+                <li>
+                    <h3>{{ entrada.titulo }}</h3>
+                    <p>{{ entrada.contenido }}</p>
+                    <p>Categoría: {{ entrada.categoria }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
+
